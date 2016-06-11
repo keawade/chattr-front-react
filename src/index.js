@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import ReactDOM from 'react-dom'
 
 import Header from './components/header'
+import Room from './components/room'
 
 class App extends Component {
   constructor (props) {
@@ -13,6 +14,9 @@ class App extends Component {
     return (
       <div>
         <Header />
+        <div id='container' className='ui container'>
+          <Room />
+        </div>
       </div>
     )
   }

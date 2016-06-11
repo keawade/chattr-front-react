@@ -2,7 +2,7 @@ import React from 'react'
 
 const Header = (props) => {
   return (
-    <div className='ui top fixed huge icon menu'>
+    <div className='ui fixed main huge icon menu'>
       <a href='/' className='item'>
         chattr
       </a>
