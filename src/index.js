@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
 import ReactDOM from 'react-dom'
 
+import Header from './components/header'
+
 class App extends Component {
   constructor (props) {
     super(props)
@@ -10,10 +12,10 @@ class App extends Component {
   render () {
     return (
       <div>
-        <h1>This is a test.</h1>
+        <Header />
       </div>
     )
   }
 }
 
-ReactDOM.render(<App />, document.querySelector('.container'))
+ReactDOM.render(<App />, document.getElementById('container'))
