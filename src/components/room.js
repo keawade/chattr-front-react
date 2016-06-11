@@ -1,62 +1,17 @@
 import React, { Component } from 'react'
+import io from 'socket.io-client'
 import RoomForm from './room/form'
 import MessageList from './room/message-list'
 import UserList from './room/user-list'
+
+const socket = io('http://localhost:8081')
 
 class Room extends Component {
   constructor (props) {
     super(props)
 
     this.state = {
-      messages: [{
-        _id: '000',
-        username: 'keawade',
-        avatarUrl: 'resource/images/keawade.png',
-        date: timePrint(Date.now() - 60 * 60 * 24 * 3),
-        message: 'Yo, check out my date/time management! What happens if I have a super duper long string that tries to wrap to the next line? Is this long enough yet? Okay, looks like the container is too narrow because of the base "comments" element size... Now it\'s fixed!'
-      },
-      {
-        _id: '001',
-        username: 'nathanbland',
-        avatarUrl: 'resource/images/nathanbland.png',
-        date: timePrint(Date.now() - 60 * 60 * 24 * 1),
-        message: 'Yo, check out my date/time management!'
-      },
-      {
-        _id: '002',
-        username: 'crodeheaver',
-        avatarUrl: 'resource/images/crodeheaver.png',
-        date: timePrint(Date.now() - 60 * 60 * 3),
-        message: 'Yo, check out my date/time management!'
-      },
-      {
-        _id: '003',
-        username: 'keawade',
-        avatarUrl: 'resource/images/keawade.png',
-        date: timePrint(Date.now() - 60 * 60 * 1),
-        message: 'Yo, check out my date/time management!'
-      },
-      {
-        _id: '004',
-        username: 'nathanbland',
-        avatarUrl: 'resource/images/nathanbland.png',
-        date: timePrint(Date.now() - 60 * 54),
-        message: 'Yo, check out my date/time management!'
-      },
-      {
-        _id: '005',
-        username: 'crodeheaver',
-        avatarUrl: 'resource/images/crodeheaver.png',
-        date: timePrint(Date.now() - 60 * 1),
-        message: 'Yo, check out my date/time management!'
-      },
-      {
-        _id: '006',
-        username: 'keawade',
-        avatarUrl: 'resource/images/keawade.png',
-        date: timePrint(Date.now()),
-        message: 'Yo, check out my date/time management!'
-      }],
+      messages: [],
       users: [
         {
           username: 'keawade',
@@ -65,23 +20,29 @@ class Room extends Component {
         },
         {
           username: 'crodeheaver',
-          date: timePrint(Date.now() - 60 * 1),
+          date: timePrint(Date.now() - 1000 * 60 * 1),
           avatarUrl: 'resource/images/crodeheaver.png'
         },
         {
           username: 'nathanbland',
-          date: timePrint(Date.now() - 60 * 54),
+          date: timePrint(Date.now() - 1000 * 60 * 54),
           avatarUrl: 'resource/images/nathanbland.png'
         }
       ]
     }
+  }
+  componentDidMount () {
+    socket.on('message', message => this.onMessage(message))
+  }
+  onMessage (data) {
+    this.setState({messages: this.state.messages.concat([data])})
   }
   render () {
     return (
       <div className='ui one column grid'>
         <div className='eleven wide column'>
           <MessageList messages={this.state.messages} />
-          <RoomForm />
+          <RoomForm socket={socket} />
         </div>
         <div className='five wide column'>
           <UserList users={this.state.users} />
@@ -89,10 +50,11 @@ class Room extends Component {
       </div>
     )
   }
+
 }
 
 function timePrint (dateTime) {
-  const minutes = Math.floor((Date.now() - dateTime) / 60)
+  const minutes = Math.floor((Date.now() - dateTime) / 1000)
   if (minutes === 0) {
     return 'Less than a minute ago'
   }
