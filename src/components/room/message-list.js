@@ -8,8 +8,10 @@ const MessageList = (props) => {
     )
   })
   return (
-    <div className='ui comments'>
-      {messages}
+    <div className='ui segment'>
+      <div className='ui comments chattr-message-list'>
+        {messages}
+      </div>
     </div>
   )
 }

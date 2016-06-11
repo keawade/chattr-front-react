@@ -5,3 +5,7 @@ body {
 .ui #container {
   margin-top: 5em;
 }
+
+.chattr-message-list {
+  max-width: 100% !important;
+}
