@@ -4,7 +4,7 @@ import MessageListItem from './message-list-item'
 const MessageList = (props) => {
   const messages = props.messages.map(message => {
     return (
-      <MessageListItem key={message._id} message={message} />
+      <MessageListItem message={message} />
     )
   })
   return (

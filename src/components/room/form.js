@@ -27,8 +27,8 @@ class RoomForm extends Component {
       return
     }
     const message = {
-      username: 'keawade',
-      message: this.state.message.trim()
+      user: 'keawade',
+      content: this.state.message.trim()
     }
     this.props.socket.emit('message', message)
     this.setState({message: ''})

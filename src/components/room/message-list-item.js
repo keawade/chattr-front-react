@@ -6,15 +6,15 @@ const MessageListItem = (props) => {
   return (
     <div className='comment chattr-message'>
       <a className='avatar'>
-        <img src={message.avatarUrl} />
+        <img src='resource/images/keawade.png' />
       </a>
       <div className='content'>
-        <a className='author'>{message.username}</a>
+        <a className='author'>{message.user}</a>
         <div className='metadata'>
           <span className='date'>{date}</span>
         </div>
         <div className='text'>
-          {message.message}
+          {message.content}
         </div>
       </div>
     </div>
