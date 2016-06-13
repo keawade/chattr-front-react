@@ -4,7 +4,7 @@ import RoomForm from './room/form'
 import MessageList from './room/message-list'
 import UserList from './room/user-list'
 
-const socket = io('http://localhost:8081')
+const socket = io('https://chattr-back-keawade.c9users.io')
 
 class Room extends Component {
   constructor (props) {
