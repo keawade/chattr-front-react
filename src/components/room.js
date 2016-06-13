@@ -11,6 +11,7 @@ class Room extends Component {
     super(props)
 
     this.state = {
+      localUser: 'keawade',
       messages: [],
       users: [
         {
@@ -32,6 +33,7 @@ class Room extends Component {
     }
   }
   componentDidMount () {
+    socket.emit('connected', {user: this.state.localUser})
     socket.on('message', message => this.onMessage(message))
   }
   onMessage (data) {
