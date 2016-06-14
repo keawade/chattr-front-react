@@ -1,25 +1,16 @@
-import React, { Component } from 'react'
+import React from 'react'
 import ReactDOM from 'react-dom'
+import { Provider } from 'react-redux'
+import { createStore, applyMiddleware } from 'redux'
+import { Router, browserHistory } from 'react-router'
 
-import Header from './components/header'
-import Room from './components/room'
+import reducers from './reducers'
+import routes from './routes'
 
-class App extends Component {
-  constructor (props) {
-    super(props)
-    this.state = {}
-  }
+const createStoreWithMiddleware = applyMiddleware()(createStore)
 
-  render () {
-    return (
-      <div>
-        <Header />
-        <div id='container' className='ui container'>
-          <Room />
-        </div>
-      </div>
-    )
-  }
-}
-
-ReactDOM.render(<App />, document.getElementById('container'))
+ReactDOM.render(
+  <Provider store={createStoreWithMiddleware(reducers)}>
+    <Router history={browserHistory} routes={routes} />
+  </Provider>
+  , document.querySelector('.container'))

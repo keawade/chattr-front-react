@@ -1,37 +1,46 @@
 {
   "name": "chattr-front-react",
   "version": "1.0.0",
-  "description": "A frontend solution for chattr.",
+  "description": "A front end implementation built with React for chattr",
   "main": "index.js",
-  "repository": "git@github.com:StephenGrider/ReduxSimpleStarter.git",
   "scripts": {
     "start": "node ./node_modules/webpack-dev-server/bin/webpack-dev-server.js",
     "test": "mocha --compilers js:babel-core/register --require ./test/test_helper.js --recursive ./test",
     "test:watch": "npm run test -- --watch"
   },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/keawade/chattr-front-react.git"
+  },
   "author": "keawade",
   "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/keawade/chattr-front-react/issues"
+  },
+  "homepage": "https://github.com/keawade/chattr-front-react#readme",
+  "dependencies": {
+    "axios": "^0.12.0",
+    "babel-preset-stage-1": "^6.5.0",
+    "lodash": "^4.13.1",
+    "react": "^15.1.0",
+    "react-dom": "^15.1.0",
+    "react-redux": "^4.4.5",
+    "react-router": "^2.4.1",
+    "redux": "^3.5.2",
+    "socket.io-client": "^1.4.6"
+  },
   "devDependencies": {
-    "babel-core": "^6.2.1",
-    "babel-loader": "^6.2.0",
-    "babel-preset-es2015": "^6.1.18",
-    "babel-preset-react": "^6.1.18",
+    "babel-core": "^6.9.1",
+    "babel-loader": "^6.2.4",
+    "babel-preset-es2015": "^6.9.0",
+    "babel-preset-react": "^6.5.0",
     "chai": "^3.5.0",
     "chai-jquery": "^2.0.0",
-    "jquery": "^2.2.1",
-    "jsdom": "^8.1.0",
-    "mocha": "^2.4.5",
-    "react-addons-test-utils": "^0.14.7",
-    "webpack": "^1.12.9",
-    "webpack-dev-server": "^1.14.0"
-  },
-  "dependencies": {
-    "babel-preset-stage-1": "^6.1.18",
-    "react": "^0.14.3",
-    "react-dom": "^0.14.3",
-    "react-redux": "^4.0.0",
-    "react-router": "^2.0.1",
-    "redux": "^3.0.4",
-    "socket.io-client": "1.4.6"
+    "jquery": "^3.0.0",
+    "jsdom": "^9.2.1",
+    "mocha": "^2.5.3",
+    "react-addons-test-utils": "^15.1.0",
+    "webpack": "^1.13.1",
+    "webpack-dev-server": "^1.14.1"
   }
 }
