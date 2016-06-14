@@ -2,8 +2,8 @@ body {
   height: auto;
 }
 
-.ui #container {
-  margin-top: 5em;
+#container {
+  margin-top: 5em !important;
 }
 
 .chattr-message-list {
