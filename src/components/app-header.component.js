@@ -3,13 +3,13 @@ import React from 'react'
 const ChattrHeader = (props) => {
   return (
     <div className='ui fixed main huge icon menu'>
-      <a href='/' className='item'>
+      <div className='item chattr-header-name'>
         chattr
-      </a>
-      <a href='/chats' className='item'>
+      </div>
+      <a href='/' className='item'>
         <i className='comments icon' />
       </a>
-      <a href='/new' className='item'>
+      <a href='/add' className='item'>
         <i className='icons'>
           <i className='comment icon'></i>
           <i className='corner add icon'></i>

@@ -9,3 +9,7 @@ body {
 .chattr-message-list {
   max-width: 100% !important;
 }
+
+.chattr-header-name:hover {
+  cursor: default;
+}

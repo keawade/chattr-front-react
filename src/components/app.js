@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import ChattrHeader from './header'
+import ChattrHeader from './app-header.component'
 
 export default class App extends Component {
   render() {
