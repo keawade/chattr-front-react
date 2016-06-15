@@ -1,9 +1,42 @@
-import React from 'react'
+import React, { Component } from 'react'
+import { connect } from 'react-redux'
+import { bindActionCreators } from 'redux'
 
-const Login = (props) => {
-  return (
-    <div>This is the login page</div>
-  )
+class Login extends Component {
+  constructor() {
+    this. state = {
+      user: '',
+      password: ''
+    }
+  }
+
+  login(event) {
+    event.preventDefault()
+
+    Auth.login(this.state.user, this.state.password).catch(function(err) {
+      console.log('Error logging in', err)
+    })
+  }
+
+  render() {
+    return (
+      <form className='ui form'>
+        <div className='field'>
+          <label>First Name</label>
+          <input type='text' name='username' placeholder='Username' />
+        </div>
+        <div className='field'>
+          <label>Last Name</label>
+          <input type='password' name='password' placeholder='Password' />
+        </div>
+        <button className='ui button' type='submit'>Submit</button>
+      </form>
+    )
+  }
 }
 
-export default Login
+function mapDispatchToProps(dispatch) {
+  return bindActionCreators({ authenticateUser }, dispatch)
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Login)
