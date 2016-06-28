@@ -1,10 +1,7 @@
 import React, { Component } from 'react'
-import io from 'socket.io-client'
-import RoomForm from './room/form'
-import MessageList from './room/message-list'
-import UserList from './room/user-list'
-
-const socket = io('https://chattr-back.herokuapp.com')
+import RoomForm from './room-form.component'
+import MessageList from './room-message-list.component'
+import UserList from './room-user-list.component'
 
 class Room extends Component {
   constructor (props) {
@@ -17,24 +14,22 @@ class Room extends Component {
         {
           username: 'keawade',
           date: timePrint(Date.now()),
-          avatarUrl: 'resource/images/keawade.png'
+          avatarUrl: 'src/resources/images/keawade.png'
         },
         {
           username: 'crodeheaver',
           date: timePrint(Date.now() - 1000 * 60 * 1),
-          avatarUrl: 'resource/images/crodeheaver.png'
+          avatarUrl: 'src/resources/images/crodeheaver.png'
         },
         {
           username: 'nathanbland',
           date: timePrint(Date.now() - 1000 * 60 * 54),
-          avatarUrl: 'resource/images/nathanbland.png'
+          avatarUrl: 'src/resources/images/nathanbland.png'
         }
       ]
     }
   }
   componentDidMount () {
-    socket.emit('connected', {user: this.state.localUser})
-    socket.on('message', message => this.onMessage(message))
   }
   onMessage (data) {
     this.setState({messages: this.state.messages.concat([data])})
@@ -43,11 +38,11 @@ class Room extends Component {
     return (
       <div className='ui one column grid'>
         <div className='eleven wide column'>
-          <MessageList messages={this.state.messages} />
-          <RoomForm socket={socket} />
+          <MessageList messages={this.state.messages} socket={this.props.socket} />
+          <RoomForm socket={this.props.socket} />
         </div>
         <div className='five wide column'>
-          <UserList users={this.state.users} />
+          <UserList users={this.state.users} socket={this.props.socket}/>
         </div>
       </div>
     )

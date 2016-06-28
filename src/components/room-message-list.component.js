@@ -1,5 +1,5 @@
 import React from 'react'
-import MessageListItem from './message-list-item'
+import MessageListItem from './room-message-list-item.component'
 
 const MessageList = (props) => {
   const messages = props.messages.map(message => {

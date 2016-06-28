@@ -1,5 +1,5 @@
 import React from 'react'
-import UserListItem from './user-list-item'
+import UserListItem from './room-user-list-item.component'
 
 const UserList = (props) => {
   const userElements = props.users.map(user => {

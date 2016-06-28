@@ -1,6 +1,10 @@
 import React from 'react'
 
 const ChattrHeader = (props) => {
+  var inOrOut = 'sign in icon'
+  if (false) { // If logged in
+    inOrOut = 'sign out icon'
+  }
   return (
     <div className='ui fixed main huge icon menu'>
       <div className='item chattr-header-name'>
@@ -23,7 +27,7 @@ const ChattrHeader = (props) => {
           <i className='fork icon' />
         </a>
         <a href='/login' className='item'>
-          <i className='sign out icon' />
+          <i className={inOrOut} />
         </a>
       </div>
     </div>
