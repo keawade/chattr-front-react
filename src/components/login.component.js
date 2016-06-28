@@ -3,7 +3,8 @@ import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 
 class Login extends Component {
-  constructor() {
+  constructor(props) {
+    super(props)
     this. state = {
       user: '',
       password: ''
@@ -35,8 +36,4 @@ class Login extends Component {
   }
 }
 
-function mapDispatchToProps(dispatch) {
-  return bindActionCreators({ authenticateUser }, dispatch)
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(Login)
+export default Login
