@@ -1,18 +1,43 @@
+import { EventEmitter } from 'events'
+import { isTokenExpired } from './jwtHelper'
 import Auth0Lock from 'auth0-lock'
 
-export default class AuthService {
+let options = {
+  auth: {
+    redirect: false
+  },
+  theme: {
+    primaryColor: 'grey'
+  },
+  closable: false
+}
+
+class AuthService extends EventEmitter {
   constructor(clientId, domain) {
+    super()
     // Configure Auth0
-    this.lock = new Auth0Lock(clientId, domain, {})
+    this.lock = new Auth0Lock(clientId, domain, options)
     // Add callback for lock `authenticated` event
-    this.lock.on('authenticated', this._doAuthentication.bind(this))
+    this.lock.on('authenticated', (authResult) => {
+      this.lock.getProfile(authResult.idToken, (error, profile) => {
+        if (error) {
+          // Handle error
+          return
+        }
+        this.setToken(authResult.idToken)
+        this.setProfile(profile)
+      })
+      this.lock.hide()
+    })
+    // Add callback for lock `authorization_error` event
+    this.lock.on('authorization_error', this._authorizationError.bind(this))
     // binds login functions to keep this context
     this.login = this.login.bind(this)
   }
 
-  _doAuthentication(authResult){
-    // Saves the user token
-    this.setToken(authResult.idToken)
+  _authorizationError(error){
+    // Unexpected authentication error
+    console.log('Authentication Error', error)
   }
 
   login() {
@@ -22,7 +47,21 @@ export default class AuthService {
 
   loggedIn(){
     // Checks if there is a saved token and it's still valid
-    return !!this.getToken()
+    const token = this.getToken()
+    return !!token && !isTokenExpired(token)
+  }
+
+  setProfile(profile){
+    // Saves profile data to localStorage
+    localStorage.setItem('profile', JSON.stringify(profile))
+    // Triggers profile_updated event to update the UI
+    this.emit('profile_updated', profile)
+  }
+
+  getProfile(){
+    // Retrieves the profile data from localStorage
+    const profile = localStorage.getItem('profile')
+    return profile ? JSON.parse(localStorage.profile) : {}
   }
 
   setToken(idToken){
@@ -38,5 +77,10 @@ export default class AuthService {
   logout(){
     // Clear user token and profile data from localStorage
     localStorage.removeItem('id_token');
+    localStorage.removeItem('profile');
   }
 }
+
+const auth = new AuthService('NcdEWZ7kwNyzJFvmNGhTgTh0PbBrXy5V', 'keawade.auth0.com')
+
+export default auth

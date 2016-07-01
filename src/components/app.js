@@ -13,19 +13,11 @@ export default class App extends Component {
   }
 
   render() {
-    let children = null;
-    if (this.props.children) {
-      children = React.cloneElement(this.props.children, {
-        auth: this.props.route.auth, //sends auth instance from route to children
-        socket: socket
-      })
-    }
-
     return (
       <div>
-        <ChattrHeader />
+        <ChattrHeader auth={this.props.route.auth} />
         <div id='container' className='ui container'>
-          {children}
+          {this.props.children}
         </div>
       </div>
     );

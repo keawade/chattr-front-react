@@ -9,21 +9,19 @@ import About from './components/about.component'
 import Chat from './components/chat.component'
 import Room from './components/room.component'
 
-import AuthService from './utils/AuthService'
+import auth from './utils/AuthService'
 
-var auth = new AuthService('NcdEWZ7kwNyzJFvmNGhTgTh0PbBrXy5V', 'keawade.auth0.com')
 
 const requireAuth = (nextState, replace) => {
   if (!auth.loggedIn()) {
-    replace({ pathname: '/about' })
+    replace({ pathname: '/chat' })
   }
 }
 
 export default (
   <Route path='/' component={App} auth={auth}>
-    <IndexRedirect to='/chat' />
-    <Route path='about' component={About} />
-    <Route path='chat' component={ChatListing} onEnter={requireAuth} />
+    <IndexRedirect to='chat' />
+    <Route path='chat' component={ChatListing} />
     <Route path='add' component={Add} onEnter={requireAuth} />
     <Route path='*' component={Room} onEnter={requireAuth} />
   </Route>
