@@ -16,8 +16,8 @@ export default class App extends Component {
     let children = null;
     if (this.props.children) {
       children = React.cloneElement(this.props.children, {
-        auth: this.props.route.auth, //sends auth instance from route to children
-        socket: socket
+        auth: this.props.route.auth, // TODO: put into a utils
+        socket: socket // TODO: put into a utils
       })
     }
 
