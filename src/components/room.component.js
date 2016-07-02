@@ -14,17 +14,17 @@ class Room extends Component {
         {
           username: 'keawade',
           date: timePrint(Date.now()),
-          avatarUrl: 'src/resources/images/keawade.png'
+          avatarUrl: 'http://lorempixel.com/48/48/cats/1'
         },
         {
           username: 'crodeheaver',
           date: timePrint(Date.now() - 1000 * 60 * 1),
-          avatarUrl: 'src/resources/images/crodeheaver.png'
+          avatarUrl: 'http://lorempixel.com/48/48/cats/2'
         },
         {
           username: 'nathanbland',
           date: timePrint(Date.now() - 1000 * 60 * 54),
-          avatarUrl: 'src/resources/images/nathanbland.png'
+          avatarUrl: 'http://lorempixel.com/48/48/cats/3'
         }
       ]
     }
