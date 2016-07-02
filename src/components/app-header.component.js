@@ -24,15 +24,15 @@ class ChattrHeader extends Component {
         <div className='item chattr-header-name'>
           chattr
         </div>
-        <a href='/' className='item'>
+        <Link to='/' className='item'>
           <i className='comments icon' />
-        </a>
-        <a href='/add' className='item'>
+        </Link>
+        <Link to='/add' className='item'>
           <i className='icons'>
             <i className='comment icon'></i>
             <i className='corner add icon'></i>
           </i>
-        </a>
+        </Link>
         <div className='right menu'>
           <a href='https://github.com/keawade/chattr-front-react/issues' className='item'>
             <i className='bug icon' />
